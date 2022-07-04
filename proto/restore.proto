@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package restore;
+
+import "proto/messages.proto";
+
+service Restore {
+    rpc RestoreDatabase(DatabaseRequest) returns (DatabaseResponse);
+}

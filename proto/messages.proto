@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message DatabaseRequest {}
+
+message DatabaseResponse {
+    bytes db = 1;
+}

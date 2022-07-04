@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package backup;
+
+import "proto/messages.proto";
+
+
+service BackUp {
+    rpc BackUpDatabase(DatabaseRequest) returns (DatabaseResponse);
+}
