@@ -9,8 +9,12 @@ class DrawerTile extends StatelessWidget {
   ///
   ///  press = function for onTap
   ///
-  const DrawerTile(
-      {required this.title, required this.icon, required this.press});
+  const DrawerTile({
+    required this.title,
+    required this.icon,
+    required this.press,
+    super.key,
+  });
 
   // VARIABLES
   final String title;
@@ -24,10 +28,9 @@ class DrawerTile extends StatelessWidget {
       leading: icon,
       title: Text(
         title,
-        style: TextStyle(color: Colors.white54),
+        style: const TextStyle(color: Colors.white54),
       ),
     );
   }
 // final VoidCallback press;
-
 }

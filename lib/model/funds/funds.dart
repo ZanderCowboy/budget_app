@@ -2,10 +2,6 @@ import 'package:budget_app/model/funds/funds_card.dart';
 import 'package:flutter/material.dart';
 
 class Funds {
-  final int id;
-  final String name;
-  final String description;
-  final double total;
 
   Funds({
     required this.id,
@@ -14,14 +10,6 @@ class Funds {
     required this.total,
   });
 
-  bool isNull() {
-    if (name == '' || description == '' || total == 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   factory Funds.fromMap(Map<String, dynamic> json) {
     return Funds(
       id: json['id'] as int,
@@ -29,6 +17,18 @@ class Funds {
       description: json['description'] as String,
       total: json['total'] as double,
     );
+  }
+  final int id;
+  final String name;
+  final String description;
+  final double total;
+
+  bool isNull() {
+    if (name == '' || description == '' || total == 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Map<String, dynamic> toMap() => {

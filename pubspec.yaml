@@ -1,31 +1,31 @@
 name: budget_app
 description: A budget app to categorize my expenses.
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.0-45.0.dev <3.0.0"
+  # sdk: ">=2.17.0-45.0.dev <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
+  charts_flutter: ^0.12.0
+  cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  sqflite: ^2.0.2
-  path: ^1.8.1
-  charts_flutter: ^0.12.0
-  sleek_circular_slider: ^2.0.1
   intl: ^0.17.0
+  path: ^1.9.0
   random_color: ^1.0.6-nullsafety
-  tuple: ^2.0.0
-
+  sleek_circular_slider: ^2.0.1
+  sqflite: ^2.3.3
+  tuple: ^2.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  # flutter_lints: ^3.0.2
+  very_good_analysis: any
 
 flutter:
   uses-material-design: true
-

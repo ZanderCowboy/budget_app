@@ -8,13 +8,14 @@ class MoneyMan {
     final cashFund = await SQLHelper.readFunds(SQLHelper.cheque);
     final amount = (trans.type == 0) ? trans.amount : -1 * trans.amount;
     final newCashFund = Funds(
-        id: cashFund.id,
-        name: cashFund.name,
-        description: cashFund.description,
-        total: cashFund.total + amount);
+      id: cashFund.id,
+      name: cashFund.name,
+      description: cashFund.description,
+      total: cashFund.total + amount,
+    );
 
-    SQLHelper.updateFunds(newCashFund);
-    adjustFunds();
+    await SQLHelper.updateFunds(newCashFund);
+    await adjustFunds();
     return newCashFund.total;
   }
 
@@ -28,44 +29,49 @@ class MoneyMan {
         .fold<double>(0, (acc, elem) => acc + elem);
 
     final newBankAccount = Account(
-        name: bankAccount.name,
-        amount: totalFundsAmount,
-        type: bankAccount.type);
+      name: bankAccount.name,
+      amount: totalFundsAmount,
+      type: bankAccount.type,
+    );
     // final newBankAccount = bankAccount.adjustAmount(totalFundsAmount);
-    SQLHelper.updateAccount(newBankAccount);
+    await SQLHelper.updateAccount(newBankAccount);
   }
 
   static Future<void> adjustCheque(double a) async {
     final chequeFund = await SQLHelper.readFunds(SQLHelper.cheque);
     final newChequeFund = chequeFund.adjustAmount(a);
-    SQLHelper.updateFunds(newChequeFund);
+    await SQLHelper.updateFunds(newChequeFund);
   }
 
   static Future<void> transferFunds(Funds from, Funds to, double amount) async {
     // From
     final fromFund = from.adjustAmount(-1 * amount);
-    SQLHelper.updateFunds(fromFund);
+    await SQLHelper.updateFunds(fromFund);
 
     // To
     final toFund = to.adjustAmount(amount);
-    SQLHelper.updateFunds(toFund);
+    await SQLHelper.updateFunds(toFund);
   }
 
-  static Future<void> transferAccount(Account from, Account to, double amount) async {
+  static Future<void> transferAccount(
+    Account from,
+    Account to,
+    double amount,
+  ) async {
     // From
     final fromAccount = from.adjustAmount(-1 * amount);
-    SQLHelper.updateAccount(fromAccount);
+    await SQLHelper.updateAccount(fromAccount);
 
     if (from.name == SQLHelper.bank) {
-      adjustCheque(-1 * amount);
+      await adjustCheque(-1 * amount);
     }
 
     // To
     final toAccount = to.adjustAmount(amount);
-    SQLHelper.updateAccount(toAccount);
+    await SQLHelper.updateAccount(toAccount);
 
     if (to.name == SQLHelper.bank) {
-      adjustCheque(amount);
+      await adjustCheque(amount);
     }
   }
 }

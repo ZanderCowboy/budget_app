@@ -1,9 +1,5 @@
 class Account {
 
-  final String name;
-  final double amount;
-  final int type;
-
   Account({required this.name, required this.amount, required this.type});
 
   factory Account.fromMap(Map<String, dynamic> json) {
@@ -13,12 +9,15 @@ class Account {
       type: json['type'] as int,
     );
   }
+  final String name;
+  final double amount;
+  final int type;
 
   Map<String, dynamic> toMap() => {
-    'name': name,
-    'amount': amount,
-    'type': type,
-  };
+        'name': name,
+        'amount': amount,
+        'type': type,
+      };
 
   Account adjustAmount(double a) {
     return Account(name: name, amount: amount + a, type: type);
@@ -26,6 +25,6 @@ class Account {
 
   @override
   String toString() {
-    return 'name: ' + name + ', account: R ' + amount.toStringAsFixed(2) + ', type: ' + type.toString();
+    return 'name: $name, account: R ${amount.toStringAsFixed(2)}, type: $type';
   }
 }

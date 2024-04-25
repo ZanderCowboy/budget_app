@@ -13,7 +13,7 @@ const String drawerSettings = 'Settings';
 const String rootRoute = '/';
 const String fundsRoute = '/funds';
 const String transactionsRoute = '/transactions';
-const String transferRoute = "/transfer";
+const String transferRoute = '/transfer';
 
 // DEFAULT COLOUR
 // https://www.color-hex.com/color-palette/28549

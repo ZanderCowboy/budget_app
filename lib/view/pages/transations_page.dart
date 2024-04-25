@@ -1,13 +1,14 @@
 import 'package:budget_app/model/money/money_man.dart';
 import 'package:budget_app/model/transactions/cash_card.dart';
+import 'package:budget_app/model/transactions/transactions.dart';
 import 'package:budget_app/utils/constants.dart';
 import 'package:budget_app/utils/db/sql_helper.dart';
 import 'package:budget_app/view/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
-import 'package:budget_app/model/transactions/transactions.dart';
-
 class TransactionPage extends StatefulWidget {
+  const TransactionPage({super.key});
+
   @override
   State<TransactionPage> createState() => _TransactionPageState();
 }
@@ -15,15 +16,25 @@ class TransactionPage extends StatefulWidget {
 class _TransactionPageState extends State<TransactionPage> {
   static final List<DropdownMenuItem<int>> _menuItems = [
     const DropdownMenuItem(
-        child: Text('Income',
-            style: TextStyle(
-                color: Color(0xFF099A41), fontWeight: FontWeight.bold)),
-        value: 0),
+      value: 0,
+      child: Text(
+        'Income',
+        style: TextStyle(
+          color: Color(0xFF099A41),
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
     const DropdownMenuItem(
-        child: Text('Expense',
-            style: TextStyle(
-                color: Color(0xFFC51B2C), fontWeight: FontWeight.bold)),
-        value: 1),
+      value: 1,
+      child: Text(
+        'Expense',
+        style: TextStyle(
+          color: Color(0xFFC51B2C),
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
   ];
 
   List<Transaction> _transList = [];
@@ -34,7 +45,7 @@ class _TransactionPageState extends State<TransactionPage> {
   final TextEditingController _typeController = TextEditingController();
 
   Future<void> _insertTrans(Transaction t) async {
-    SQLHelper.createTransaction(t);
+    await SQLHelper.createTransaction(t);
     final trans = await SQLHelper.getAllTransactions();
     final newCashBalance = await MoneyMan.newTransaction(t);
     setState(() {
@@ -57,115 +68,128 @@ class _TransactionPageState extends State<TransactionPage> {
     _typeController.clear();
   }
 
-  void _showForm() async {
-    int _value = 1;
-    showModalBottomSheet<Transaction>(
-        isScrollControlled: true,
-        isDismissible: false,
-        elevation: 5,
-        context: context,
-        builder: (context) => StatefulBuilder(
-                builder: (BuildContext context, StateSetter setModalState) {
-              return Container(
-                color: Colors.white12,
-                padding: EdgeInsets.only(
-                    top: 15,
-                    left: 15,
-                    right: 15,
-                    bottom: MediaQuery.of(context).viewInsets.bottom + 120),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextField(
-                      controller: _nameController,
-                      keyboardType: TextInputType.name,
-                      decoration: const InputDecoration(labelText: 'Name'),
+  Future<void> _showForm() async {
+    const value = 1;
+    await showModalBottomSheet<Transaction>(
+      isScrollControlled: true,
+      isDismissible: false,
+      elevation: 5,
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (BuildContext context, StateSetter setModalState) {
+          return Container(
+            color: Colors.white12,
+            padding: EdgeInsets.only(
+              top: 15,
+              left: 15,
+              right: 15,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 120,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                  controller: _nameController,
+                  keyboardType: TextInputType.name,
+                  decoration: const InputDecoration(labelText: 'Name'),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                TextField(
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    prefixText: 'R ',
+                    labelText: 'Amount',
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: <Widget>[
+                    const Text(
+                      'Type',
+                      style: TextStyle(fontSize: 17, color: Colors.black54),
                     ),
                     const SizedBox(
-                      height: 5,
+                      width: 45,
                     ),
-                    TextField(
-                        controller: _amountController,
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          prefixText: 'R ',
-                          labelText: 'Amount',
-                        )),
-                    const SizedBox(
-                      height: 15,
+                    DropdownButton(
+                      value: value,
+                      items: _menuItems,
+                      onChanged: (int? value) {
+                        setModalState(() {
+                          value = value!;
+                        });
+                      },
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        const Text('Type',
-                            style:
-                                TextStyle(fontSize: 17, color: Colors.black54)),
-                        const SizedBox(
-                          width: 45,
-                        ),
-                        DropdownButton(
-                            value: _value,
-                            items: _menuItems,
-                            onChanged: (int? value) {
-                              setModalState(() {
-                                _value = value!;
-                              });
-                            }),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.pink)),
-                            onPressed: () {
-                              final String name = _nameController.text;
-                              final double amount =
-                                  double.parse(_amountController.text);
-
-                              final trans = Transaction(
-                                  id: 0,
-                                  name: name,
-                                  amount: amount,
-                                  type: _value,
-                                  date: '');
-
-                              _clear();
-                              _insertTrans(trans);
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Submit',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold))),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.deepOrange)),
-                          onPressed: () {
-                            _clear();
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Cancel',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                      ],
-                    )
                   ],
                 ),
-              );
-            }));
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.pink),
+                      ),
+                      onPressed: () {
+                        final name = _nameController.text;
+                        final amount = double.parse(_amountController.text);
+
+                        final trans = Transaction(
+                          id: 0,
+                          name: name,
+                          amount: amount,
+                          type: value,
+                          date: '',
+                        );
+
+                        _clear();
+                        _insertTrans(trans);
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Submit',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.deepOrange),
+                      ),
+                      onPressed: () {
+                        _clear();
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Cancel',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 
-  void _refresh() async {
+  Future<void> _refresh() async {
     final trans = await SQLHelper.getAllTransactions();
     final cashFund = await SQLHelper.readFunds(SQLHelper.cheque);
     setState(() {
@@ -183,20 +207,20 @@ class _TransactionPageState extends State<TransactionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       // persistentFooterButtons: [AppFooter()],
       appBar: AppBar(
         backgroundColor: secondaryColor,
         title: const Text(nameOfApp),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.refresh_sharp,
-                color: Colors.white,
-              ),
-              onPressed: () => _refresh(),
-            )
-          ]
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.refresh_sharp,
+              color: Colors.white,
+            ),
+            onPressed: _refresh,
+          ),
+        ],
       ),
       body: Center(
         child: ListView(
@@ -208,9 +232,7 @@ class _TransactionPageState extends State<TransactionPage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: secondaryColor,
-        onPressed: () {
-          _showForm();
-        },
+        onPressed: _showForm,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

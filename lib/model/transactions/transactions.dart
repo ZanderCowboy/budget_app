@@ -2,12 +2,6 @@ import 'package:budget_app/model/transactions/transaction_card.dart';
 import 'package:flutter/material.dart';
 
 class Transaction {
-  final int id;
-  final String name;
-  final double amount;
-  final int type;
-  final String date;
-
   Transaction({
     required this.id,
     required this.name,
@@ -24,13 +18,19 @@ class Transaction {
     // final type = json['type'] as int;
 
     return Transaction(
-        id: json['id'] as int,
-        name: json['name'] as String,
-        amount: json['amount'] as double,
-        // type: type.toBool,
-        type: json['type'] as int,
-        date: date);
+      id: json['id'] as int,
+      name: json['name'] as String,
+      amount: json['amount'] as double,
+      // type: type.toBool,
+      type: json['type'] as int,
+      date: date,
+    );
   }
+  final int id;
+  final String name;
+  final double amount;
+  final int type;
+  final String date;
 
   Map<String, dynamic> toMap() => {
         'name': name,
@@ -41,31 +41,27 @@ class Transaction {
 
   @override
   String toString() {
-    return 'id: ' +
-        id.toString() +
-        ',\n name: ' +
-        name.toString() +
-        ',\n amount: R' +
-        amount.toStringAsFixed(2) +
-        ',\n type: ' +
-        type.toString() +
-        '\n date: ' +
-        date.toString();
+    return 'id: $id,\n name: $name,\n amount: R${amount.toStringAsFixed(2)},\n type: $type\n date: $date';
   }
 
   Transaction now() {
     return Transaction(
-        id: id,
-        name: name,
-        amount: amount,
-        type: type,
-        date: DateTime.now().toString());
+      id: id,
+      name: name,
+      amount: amount,
+      type: type,
+      date: DateTime.now().toString(),
+    );
   }
 
   Widget toTransactionCard() {
     final amountAdjust = (type == 0) ? amount : -1 * amount;
     return TransactionCard(
-        id: id, name: name, amount: amountAdjust, date: date);
+      id: id,
+      name: name,
+      amount: amountAdjust,
+      date: date,
+    );
   }
 }
 

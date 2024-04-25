@@ -1,16 +1,17 @@
-
+import 'package:budget_app/model/funds/funds.dart';
 import 'package:flutter/material.dart';
 import 'package:random_color/random_color.dart';
 
-import 'funds.dart';
-
 // https://www.freecodecamp.org/news/how-to-build-a-cryptocurrency-price-list-app-using-flutter-sdk-1c75998e1a58
 class FundsCard extends StatelessWidget {
+  const FundsCard({
+    required this.funds,
+    super.key,
+  });
+
   static final RandomColor _randomColor = RandomColor();
 
   final Funds funds;
-
-  const FundsCard({required this.funds});
 
   Column _subTitle() {
     // final moneyColour =  (amount >= 0) ? Colors.green : Colors.red;
@@ -19,10 +20,14 @@ class FundsCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text('R ' + funds.total.toStringAsFixed(2),
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-        Text(funds.description,
-            style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 15))
+        Text(
+          'R ${funds.total.toStringAsFixed(2)}',
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        ),
+        Text(
+          funds.description,
+          style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 15),
+        ),
       ],
     );
   }
@@ -31,7 +36,7 @@ class FundsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        side: const BorderSide(color: Colors.black, width: 1),
+        side: const BorderSide(),
         borderRadius: BorderRadius.circular(10),
       ),
       elevation: 10,
@@ -42,9 +47,13 @@ class FundsCard extends StatelessWidget {
         leading: CircleAvatar(
           radius: 25,
           backgroundColor: _randomColor.randomColor(),
-          child: Text(funds.name[0],
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.white)),
+          child: Text(
+            funds.name[0],
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
           //child: Icon(leadingIcon, color: Colors.white),
         ),
         title: Text(
