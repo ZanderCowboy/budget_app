@@ -260,17 +260,10 @@ class _TransferPageState extends State<TransferPage> {
     );
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _accounts();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(),
-      // persistentFooterButtons: [AppFooter()],
       appBar: AppBar(
         backgroundColor: secondaryColor,
         title: const Text(nameOfApp),
@@ -281,7 +274,6 @@ class _TransferPageState extends State<TransferPage> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                // _accountsDropdownList();
                 _showForm(true);
               },
               style: ElevatedButton.styleFrom(
@@ -311,7 +303,6 @@ class _TransferPageState extends State<TransferPage> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                // _accountsDropdownList();
                 _showForm(false);
               },
               style: ElevatedButton.styleFrom(

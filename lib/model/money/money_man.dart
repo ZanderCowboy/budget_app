@@ -33,7 +33,7 @@ class MoneyMan {
       amount: totalFundsAmount,
       type: bankAccount.type,
     );
-    // final newBankAccount = bankAccount.adjustAmount(totalFundsAmount);
+
     await SQLHelper.updateAccount(newBankAccount);
   }
 

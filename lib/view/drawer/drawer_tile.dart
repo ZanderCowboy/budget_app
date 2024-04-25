@@ -16,7 +16,6 @@ class DrawerTile extends StatelessWidget {
     super.key,
   });
 
-  // VARIABLES
   final String title;
   final Icon icon;
   final VoidCallback press;
@@ -32,5 +31,4 @@ class DrawerTile extends StatelessWidget {
       ),
     );
   }
-// final VoidCallback press;
 }

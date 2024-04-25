@@ -15,13 +15,10 @@ class Transaction {
     final data = json['createdAt'] as String;
     final date = data.split(' ').first;
 
-    // final type = json['type'] as int;
-
     return Transaction(
       id: json['id'] as int,
       name: json['name'] as String,
       amount: json['amount'] as double,
-      // type: type.toBool,
       type: json['type'] as int,
       date: date,
     );
@@ -35,7 +32,6 @@ class Transaction {
   Map<String, dynamic> toMap() => {
         'name': name,
         'amount': amount,
-        // 'type': type.toInt,
         'type': type,
       };
 

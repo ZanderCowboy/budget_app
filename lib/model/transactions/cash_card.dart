@@ -25,8 +25,7 @@ class CashCard extends StatelessWidget {
             child: const Text(
               'Cash Balance',
               style: TextStyle(
-                // decoration: TextDecoration.underline,
-                color: Colors.black, //Colors.white,
+                color: Colors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
               ),
@@ -36,9 +35,8 @@ class CashCard extends StatelessWidget {
           Text(
             'R ${cash.toStringAsFixed(2)}',
             style: const TextStyle(
-              color: Colors.black, //Colors.white,
+              color: Colors.black,
               fontSize: 25,
-              // fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 25),

@@ -55,7 +55,6 @@ class _MoneyPageState extends State<MoneyPage> {
 
     return Scaffold(
       drawer: const AppDrawer(),
-      // persistentFooterButtons: [AppFooter()],
       appBar: AppBar(
         backgroundColor: secondaryColor,
         title: const Text(nameOfApp),
@@ -71,17 +70,13 @@ class _MoneyPageState extends State<MoneyPage> {
       ),
       body: Column(
         children: <Widget>[
-          // (_investmentAmount == 0 || _debtAmount == 0)
-          //     ?
           AccountCard(
             investValue: _investmentAmount,
             debtValue: _debtAmount,
             totalValue: _totalAmount,
           ),
-          // : AccountCardBlank(),
           BalanceCard(name: 'Net Worth', cash: total),
           BalanceCard(name: 'Bank Balance', cash: _bankAmount),
-          // SizedBox(height: 10),
         ],
       ),
     );

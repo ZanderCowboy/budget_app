@@ -38,7 +38,7 @@ class AccountCard extends StatelessWidget {
               'Account Summary',
               style: TextStyle(
                 decoration: TextDecoration.underline,
-                color: Colors.black, //Colors.white,
+                color: Colors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
               ),
@@ -54,7 +54,7 @@ class AccountCard extends StatelessWidget {
                     animationEnabled: portfolioAnimationBool,
                     infoProperties: InfoProperties(
                       topLabelStyle: const TextStyle(
-                        color: _investColor, //Colors.green.shade600,
+                        color: _investColor,
                         fontSize: 25,
                         fontWeight: FontWeight.w600,
                       ),
@@ -70,9 +70,9 @@ class AccountCard extends StatelessWidget {
                     ),
                     customColors: CustomSliderColors(
                       hideShadow: true,
-                      trackColor: _investColor, //Colors.green[800],
-                      progressBarColor: _investColor, //Colors.green[600],
-                      dotColor: _investColor, //Colors.green[600],
+                      trackColor: _investColor,
+                      progressBarColor: _investColor,
+                      dotColor: _investColor,
                     ),
                     customWidths: CustomSliderWidths(progressBarWidth: 10),
                   ),
@@ -85,7 +85,7 @@ class AccountCard extends StatelessWidget {
                     animationEnabled: portfolioAnimationBool,
                     infoProperties: InfoProperties(
                       topLabelStyle: const TextStyle(
-                        color: _debtColor, //Colors.red.shade600,
+                        color: _debtColor,
                         fontSize: 25,
                         fontWeight: FontWeight.w600,
                       ),
@@ -101,9 +101,9 @@ class AccountCard extends StatelessWidget {
                     ),
                     customColors: CustomSliderColors(
                       hideShadow: true,
-                      trackColor: _debtColor, //Colors.red[800],
-                      progressBarColor: _debtColor, //Colors.red[600],
-                      dotColor: _debtColor, //Colors.red[600],
+                      trackColor: _debtColor,
+                      progressBarColor: _debtColor,
+                      dotColor: _debtColor,
                     ),
                     customWidths: CustomSliderWidths(progressBarWidth: 10),
                   ),

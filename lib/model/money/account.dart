@@ -1,6 +1,9 @@
 class Account {
-
-  Account({required this.name, required this.amount, required this.type});
+  Account({
+    required this.name,
+    required this.amount,
+    required this.type,
+  });
 
   factory Account.fromMap(Map<String, dynamic> json) {
     return Account(

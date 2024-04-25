@@ -208,7 +208,6 @@ class _TransactionPageState extends State<TransactionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(),
-      // persistentFooterButtons: [AppFooter()],
       appBar: AppBar(
         backgroundColor: secondaryColor,
         title: const Text(nameOfApp),

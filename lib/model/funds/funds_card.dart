@@ -22,11 +22,17 @@ class FundsCard extends StatelessWidget {
       children: <Widget>[
         Text(
           'R ${funds.total.toStringAsFixed(2)}',
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
         ),
         Text(
           funds.description,
-          style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 15),
+          style: const TextStyle(
+            fontStyle: FontStyle.italic,
+            fontSize: 15,
+          ),
         ),
       ],
     );
@@ -54,7 +60,6 @@ class FundsCard extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          //child: Icon(leadingIcon, color: Colors.white),
         ),
         title: Text(
           funds.name,

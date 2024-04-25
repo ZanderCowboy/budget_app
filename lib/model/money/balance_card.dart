@@ -29,7 +29,7 @@ class BalanceCard extends StatelessWidget {
               name,
               style: const TextStyle(
                 decoration: TextDecoration.underline,
-                color: Colors.black, //Colors.white,
+                color: Colors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
               ),
@@ -39,9 +39,8 @@ class BalanceCard extends StatelessWidget {
           Text(
             'R ${cash.toStringAsFixed(2)}',
             style: const TextStyle(
-              color: Colors.black, //Colors.white,
+              color: Colors.black,
               fontSize: 25,
-              // fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 25),

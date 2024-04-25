@@ -16,7 +16,6 @@ class _FundsPageState extends State<FundsPage> {
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  // final TextEditingController _totalController = TextEditingController();
 
   Future<void> _insertFunds(Funds f) async {
     await SQLHelper.createFunds(f);
@@ -33,7 +32,6 @@ class _FundsPageState extends State<FundsPage> {
   void _clear() {
     _nameController.clear();
     _descriptionController.clear();
-    // _totalController.clear();
   }
 
   Future<void> _showForm() async {
@@ -66,16 +64,6 @@ class _FundsPageState extends State<FundsPage> {
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(labelText: 'Description'),
             ),
-            // const SizedBox(
-            //   height: 5,
-            // ),
-            // TextField(
-            //     controller: _totalController,
-            //     keyboardType: TextInputType.number,
-            //     decoration: const InputDecoration(
-            //       prefixText: 'R ',
-            //       labelText: 'Amount',
-            //     )),
             const SizedBox(
               height: 15,
             ),
@@ -89,14 +77,10 @@ class _FundsPageState extends State<FundsPage> {
                   onPressed: () {
                     final name = _nameController.text;
                     final description = _descriptionController.text;
-                    // final double amount =
-                    //     double.parse(_totalController.text);
-
                     final fund = Funds(
                       id: 0,
                       name: name,
                       description: description,
-                      // total: amount);
                       total: 0,
                     );
 
@@ -155,11 +139,8 @@ class _FundsPageState extends State<FundsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // SQLHelper.getAllFunds().then((value) => fundsList = value);
-
     return Scaffold(
       drawer: const AppDrawer(),
-      // persistentFooterButtons: [AppFooter()],
       appBar: AppBar(
         backgroundColor: secondaryColor,
         title: const Text(nameOfApp),

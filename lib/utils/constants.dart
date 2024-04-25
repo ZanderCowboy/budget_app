@@ -20,7 +20,6 @@ const String transferRoute = '/transfer';
 const Color primaryColor = Color(0xFF2697FF);
 const Color secondaryColor = Color(0xFF2A2D3E);
 const Color backgroundColor = Color(0xFF263238);
-// const Color backgroundColor = Color(0xFF212332);
 const Color textColour = Color(0xFF7289DA);
 const Color backgroundColour = Color(0xFF424549);
 const Color primaryColour = Color(0xFF36393E);

@@ -14,7 +14,7 @@ class AssetSummary extends StatelessWidget {
         color: Colors.black87,
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: secondaryColour, //Colors.black45,
+            color: secondaryColour,
             spreadRadius: 1,
             blurRadius: 1,
             offset: Offset(5, 5),
@@ -29,27 +29,17 @@ class AssetSummary extends StatelessWidget {
               'Portfolio Summary',
               style: TextStyle(
                 decoration: TextDecoration.underline,
-                decorationColor: primaryColour, //Colors.grey,
-                color: textColour, //Colors.white,
+                decorationColor: primaryColour,
+                color: textColour,
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
           Container(
-            // color: Colors.white,
             margin: const EdgeInsets.all(15),
-            // padding: const EdgeInsets.all(10),
             child: Row(
-              // mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                // Container(
-                //   height: 50,
-                //   width: 50,
-                //   margin: const EdgeInsets.all(10.0),
-                //   decoration: const BoxDecoration(
-                //       color: Colors.green, shape: BoxShape.circle),
-                // ),
                 Expanded(
                   child: SleekCircularSlider(
                     appearance: CircularSliderAppearance(

@@ -5,7 +5,7 @@ class TransactionCard extends StatelessWidget {
   const TransactionCard({
     required this.id,
     required this.name,
-    required this.amount, // required this.type,
+    required this.amount,
     required this.date,
     this.incomeColor = const Color(0xFF099A41),
     this.expenseColor = const Color(0xFFC51B2C),
@@ -15,7 +15,6 @@ class TransactionCard extends StatelessWidget {
   final int id;
   final String name;
   final double amount;
-  // final bool type;
   final String date;
   final Color? incomeColor;
   final Color? expenseColor;
@@ -62,7 +61,6 @@ class TransactionCard extends StatelessWidget {
         leading: CircleAvatar(
           radius: 25,
           backgroundColor: moneyColour,
-          //child: Text(name[0]),
           child: Icon(leadingIcon, color: Colors.white),
         ),
         title: Text(
