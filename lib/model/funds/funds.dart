@@ -2,7 +2,6 @@ import 'package:budget_app/model/funds/funds_card.dart';
 import 'package:flutter/material.dart';
 
 class Funds {
-
   Funds({
     required this.id,
     required this.name,
@@ -38,7 +37,12 @@ class Funds {
       };
 
   Funds adjustAmount(double amount) {
-    return Funds(id: id, name: name, description: description, total: total + amount);
+    return Funds(
+      id: id,
+      name: name,
+      description: description,
+      total: total + amount,
+    );
   }
 
   Widget toFundsCard() {

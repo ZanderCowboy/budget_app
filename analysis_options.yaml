@@ -4,3 +4,11 @@ linter:
   rules:
     lines_longer_than_80_chars: false
     public_member_api_docs: false
+
+analyzer:
+  exclude:
+    - lib/generated/**
+    - lib/**.g.dart
+    - lib/**.freezed.dart
+  errors:
+    invalid_annotation_target: ignore

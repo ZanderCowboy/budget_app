@@ -19,7 +19,6 @@ class _MoneyPageState extends State<MoneyPage> {
   double _bankAmount = 0;
 
   Future<void> _refresh() async {
-    // @todo get the amounts here
     final accountList = await SQLHelper.getAllAccounts();
 
     final invest = accountList

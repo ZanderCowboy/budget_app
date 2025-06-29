@@ -11,7 +11,6 @@ class Transaction {
   });
 
   factory Transaction.fromMap(Map<String, dynamic> json) {
-    // 2022-03-21 16:48:27
     final data = json['createdAt'] as String;
     final date = data.split(' ').first;
 
@@ -60,17 +59,3 @@ class Transaction {
     );
   }
 }
-
-// extension on bool {
-//   int get toInt {
-//     if (this == true) return 0;
-//     return 1;
-//   }
-// }
-//
-// extension on int {
-//   bool get toBool {
-//     if (this == 0) return true;
-//     return false;
-//   }
-// }

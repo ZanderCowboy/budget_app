@@ -23,7 +23,11 @@ class Account {
       };
 
   Account adjustAmount(double a) {
-    return Account(name: name, amount: amount + a, type: type);
+    return Account(
+      name: name,
+      amount: amount + a,
+      type: type,
+    );
   }
 
   @override

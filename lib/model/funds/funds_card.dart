@@ -14,9 +14,6 @@ class FundsCard extends StatelessWidget {
   final Funds funds;
 
   Column _subTitle() {
-    // final moneyColour =  (amount >= 0) ? Colors.green : Colors.red;
-    // final moneyColour = (amount >= 0) ? _incomeColor : _expenseColor;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
