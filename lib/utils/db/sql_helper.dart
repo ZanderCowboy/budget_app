@@ -53,9 +53,7 @@ class SQLHelper {
       ''';
 
   static Future<void> _createTables(sql.Database database) async {
-    final batch = database.batch();
-
-    batch
+    final batch = database.batch()
       ..execute(_accountsTable)
       ..execute(_fundsTable)
       ..execute(_transactionsTable);
